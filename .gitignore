@@ -17,5 +17,7 @@
 Thumbs.db
 .bak
 
+.ipynb_checkpoints
+
 # Changelog test
 changelog.txt
