@@ -1,7 +1,8 @@
 # COVID-19_plots
 
 Some plots on the COVID-19 stats in the world:  
-![world](plot_world.png)
+![world](plot_world_confirmed.png)
+![world_deaths](plot_world_deaths.png)
 and in Italy, by province and region:  
 ![ita_prov](plot_ita_prov.png)
 ![ita_reg](plot_ita_reg.png)
