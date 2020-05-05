@@ -127,6 +127,7 @@ lista.append('Singapore')
 lista.append('Brazil')
 lista.append('Australia')
 lista.append('India')
+lista.append('Russia')
 
 for name in lista:
 #    print(name)
@@ -215,6 +216,7 @@ lista.append('Singapore')
 lista.append('Brazil')
 lista.append('Australia')
 lista.append('India')
+lista.append('Russia')
 
 xmin = 1; xmax = 10;
 delay = 7 # days
@@ -311,9 +313,10 @@ lista.append('United Kingdom')
 
 #lista.append('Japan')
 #lista.append('Singapore')
-#lista.append('Brazil')
+lista.append('Brazil')
 #lista.append('Australia')
-#lista.append('India')
+lista.append('India')
+lista.append('Russia')
 
 xmin = 1; xmax = 10;
 
@@ -422,6 +425,7 @@ lista.append('Singapore')
 lista.append('Brazil')
 lista.append('Australia')
 lista.append('India')
+lista.append('Russia')
 
 deaths_xzero = 50
 
@@ -530,6 +534,7 @@ lista.append('Singapore')
 lista.append('Brazil')
 lista.append('Australia')
 lista.append('India')
+lista.append('Russia')
 
 y_xzero = 100
 

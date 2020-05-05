@@ -2,9 +2,9 @@
 # coding: utf-8
 
 # # COVID-19 Italia
-# 
+#
 # https://github.com/pcm-dpc/COVID-19
-# 
+#
 # http://opendatadpc.maps.arcgis.com/apps/opsdashboard/index.html#/b0c68bce2cce478eaac82fe38d4138b1
 
 # In[1]:
@@ -64,7 +64,7 @@ dati[dati['denominazione_provincia'] == 'Milano']['totale_casi'].tail()
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-#%matplotlib 
+#%matplotlib
 #plt.rcParams['figure.figsize'] = [10, 10]
 
 plt.close('all')
@@ -101,7 +101,7 @@ plt.grid(True, 'both')
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-#%matplotlib 
+#%matplotlib
 plt.rcParams['figure.figsize'] = [7, 15]
 
 # ln(2)/(d ln N/dt)
@@ -127,12 +127,12 @@ for name in lista:
     #y = np.log( c ); y[0] = 0 ; y[1:] = y[1:] - y[:-1] ; y = [ (log(2) / yy if yy>0 else float('nan')) for yy in y ]
     y = np.zeros( len(x) )
     y[1:] = ( c[1:] - c[:-1] ) / c[1:]
-    #y =  y.clip(min=0)  
+    #y =  y.clip(min=0)
     y[ y<0 ] = 0.0
     ax[1].plot(x,100*y,marker='o',linestyle=':',label=name)
     yd = np.log( 1 + y )
     yd = log(2) / yd
-    ax[2].plot(x,yd,marker='o',linestyle=':',label=name)    
+    ax[2].plot(x,yd,marker='o',linestyle=':',label=name)
 ax[0].legend()
 ax[0].set_ylabel('Contagi')
 ax[0].set_yscale('log')
@@ -162,7 +162,7 @@ ax[2].set_ylim([-3,33])
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-#%matplotlib 
+#%matplotlib
 #plt.rcParams['figure.figsize'] = [8, 20]
 
 url = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv'
@@ -172,7 +172,7 @@ plt.close('all')
 mpl.style.use('seaborn')
 fig, ax = plt.subplots( 3, 1, figsize=(6, 15))
 
-start = 0; step = 2
+start = 0; step = 7
 #lista = ['Treviso']
 #lista = ['Roma', 'Treviso']
 lista = []
@@ -194,11 +194,11 @@ lista.append('Lodi')
 for n, name in enumerate(lista):
     print(name)
     cn='C{}'.format(n)
-    
+
     ct = dati[dati['denominazione_provincia'] == name]['totale_casi'].to_numpy()
     xt = np.arange(len(ct))
-    ax[0].plot(xt,ct,marker='.',linestyle='',label='', color=cn) 
-    
+    ax[0].plot(xt,ct,marker='.',linestyle='',label='', color=cn)
+
     c = ct[start+step-1::step]
     c2 = c**2
     for i in range(step-1):
@@ -214,10 +214,10 @@ for n, name in enumerate(lista):
     ax[0].plot(x,c,marker='o',linestyle='-.',label=name, color=cn)
     #ax[0].errorbar(x,c,cerr,marker='s',linestyle=':',label=name)
     ax[0].legend()
-    
+
     y = np.zeros( len(x) )
     y[1:] = ( c[1:] - c[:-1] ) / (step * c[1:])
-    #y =  y.clip(min=0)  
+    #y =  y.clip(min=0)
     y[ y<0 ] = 0.0
     ax[1].plot( x[1:], 100*y[1:], marker='o',linestyle='-.',label=name)
     #ax[1].errorbar( x, 100*y, yerr=cerr/c, marker='o',linestyle=':',label=name)
@@ -225,13 +225,13 @@ for n, name in enumerate(lista):
     ax[1].set_ylim(0)
 
     yd = np.log( 1 + y )
-    yd[ yd>0 ] = log(2) / yd[ yd>0 ] 
-    yd[ yd<=0 ] = float('nan') 
-    ax[2].plot(x[1:],yd[1:],marker='o',linestyle='-.',label=name)    
+    yd[ yd>0 ] = log(2) / yd[ yd>0 ]
+    yd[ yd<=0 ] = float('nan')
+    ax[2].plot(x[1:],yd[1:],marker='o',linestyle='-.',label=name)
     #ax[2].set_yscale('log')
     ax[2].set_ylabel('Doubling time [days]')
     #ax[2].set_xlabel('Giorni dal 24 Feb.')
-    
+
     #y = np.log( c ); y[0] = 0 ; y[1:] = y[1:] - y[:-1] ; y = [ (log(2) / yy if yy>0 else float('nan')) for yy in y ]
 
 
@@ -240,7 +240,7 @@ rindex = range(len(index))
 xticks = rindex
 fxticks = [ date.strftime('%b %d') for date in list( index ) ]
 
-step=4
+step=7
 for i in range(3):
     ax[i].set_xlim( 0, xt.max()+1)
     ax[i].set_xticks(xticks[::step])
@@ -269,7 +269,7 @@ url = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dp
 dati = pd.read_csv( url, parse_dates=['data'], index_col=0)
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-#%matplotlib 
+#%matplotlib
 #plt.rcParams['figure.figsize'] = [8, 10]
 
 campi = ['totale_casi']
@@ -299,11 +299,11 @@ for i, campo in enumerate(campi):
     for n, name in enumerate(lista):
         print(name)
         cn='C{}'.format(n)
-    
+
         ct = dati[dati['denominazione_regione'] == name][campo].to_numpy()
         xt = np.arange(len(ct))
-        ax[0,i].plot(xt,ct,marker='.',linestyle='',label='', color=cn) 
-    
+        ax[0,i].plot(xt,ct,marker='.',linestyle='',label='', color=cn)
+
         c = ct[start+step-1::step]
         c2 = c**2
         for j in range(step-1):
@@ -319,24 +319,24 @@ for i, campo in enumerate(campi):
         ax[0,i].set_ylim(1,1e5)
         ax[0,i].plot(x,c,marker='o',linestyle='-.',label=name, color=cn)
         ax[0,i].set_title(campo)
-    
+
         y = np.zeros( len(x) )
         y[1:] = ( c[1:] - c[:-1] ) / (step * c[1:])
-        #y =  y.clip(min=0)  
+        #y =  y.clip(min=0)
         y[ y<0 ] = 0.0
         ax[1,i].plot( x[1:], 100*y[1:], marker='o',linestyle='-.',label=name)
         ax[1,0].set_ylabel('Daily increase [%]')
         ax[1,i].set_ylim(-1,31)
 
         #yd = np.log( 1 + y )
-        #yd[ yd>0 ] = log(2) / yd[ yd>0 ] 
-        #yd[ yd<=0 ] = float('nan') 
-        #ax[2,i].plot(x[1:],yd[1:],marker='o',linestyle='-.',label=name)    
+        #yd[ yd>0 ] = log(2) / yd[ yd>0 ]
+        #yd[ yd<=0 ] = float('nan')
+        #ax[2,i].plot(x[1:],yd[1:],marker='o',linestyle='-.',label=name)
         #ax[2,0].set_ylabel('Doubling time [days]')
         #ax[2,i].set_ylim(-1,15)
 
 
-    
+
     #y = np.log( c ); y[0] = 0 ; y[1:] = y[1:] - y[:-1] ; y = [ (log(2) / yy if yy>0 else float('nan')) for yy in y ]
 
 
@@ -371,7 +371,7 @@ url = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dp
 dati = pd.read_csv( url, parse_dates=['data'], index_col=0)
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-#%matplotlib 
+#%matplotlib
 #plt.rcParams['figure.figsize'] = [8, 10]
 
 campi = ['totale_casi']
@@ -399,13 +399,13 @@ for i, campo in enumerate(campi):
     for n, name in enumerate(lista):
         print(name)
         cn='C{}'.format(n)
-    
+
         ct = dati[dati['denominazione_regione'] == name][campo].to_numpy()
         xt = np.arange(len(ct))
         dc = ct[1:] - ct[:-1]
         dc = np.convolve(dc, np.ones((step,))/step, mode='valid')
-        ax[i].plot( ct[step:], dc, marker='.',linestyle='--',label=name, color=cn) 
-    
+        ax[i].plot( ct[step:], dc, marker='.',linestyle='--',label=name, color=cn)
+
         ax[i].set_xlabel( 'total' )
         ax[i].set_ylabel( 'increment (avg {} days)'.format(step) )
         ax[i].set_xscale('log')
