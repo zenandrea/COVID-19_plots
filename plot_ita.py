@@ -118,7 +118,7 @@ lista.append('Bologna')
 #lista.append('Udine')
 lista.append('Padova')
 lista.append('Milano')
-lista.append('Lodi')
+#lista.append('Lodi')
 
 for name in lista:
     c = dati[dati['denominazione_provincia'] == name]['totale_casi'].to_numpy()
@@ -140,13 +140,7 @@ ax[1].set_ylabel('Incremento [%]')
 ax[2].set_ylabel('Tempo raddoppiamento [g]')
 
 
-#start = 0; step = 7
-#xticks = dati[dati['sigla_provincia'] == 'RM'].index
-#fxticks = [ datetime.strptime(date, '%m/%d/%y').strftime('%b %d') for date in list(xticks) ]
-#plt.xticks(x[start::step], xticks[start::step])
-
-start = 0; step = 7
-#plt.xticks(x[start::step], x[start::step])
+start = 0; step = 15 # 7
 for i in range(3):
     ax[i].set_xticks(x[start::step])
     ax[i].xaxis.set_minor_locator(MultipleLocator())
@@ -189,7 +183,7 @@ lista.append('Padova')
 lista.append('Milano')
 lista.append('Bergamo')
 lista.append('Brescia')
-lista.append('Lodi')
+#lista.append('Lodi')
 
 for n, name in enumerate(lista):
     print(name)
@@ -240,7 +234,7 @@ rindex = range(len(index))
 xticks = rindex
 fxticks = [ date.strftime('%b %d') for date in list( index ) ]
 
-step=7
+step=15 #7
 for i in range(3):
     ax[i].set_xlim( 0, xt.max()+1)
     ax[i].set_xticks(xticks[::step])
@@ -283,7 +277,7 @@ plt.close('all')
 mpl.style.use('seaborn')
 fig, ax = plt.subplots( 2, len(campi), figsize=(18, 10))
 
-start = 0; step = 4
+start = 0; step = 7
 
 lista = []
 lista.append('Lombardia')
@@ -349,7 +343,7 @@ fxticks = [ date.strftime('%b %d') for date in list( index ) ]
 #plt.xticks(x[start::step], xticks[start::step])
 
 #plt.xticks(x[start::step], x[start::step])
-step=7
+step=15  # 7
 for i in range(2):
     for j in range(len(campi)):
         ax[i,j].set_xlim( 0, xt.max()+1)
@@ -392,7 +386,7 @@ plt.close('all')
 mpl.style.use('seaborn')
 fig, ax = plt.subplots( len(campi), 1, figsize=(7, 20))
 
-start = 0; step = 4
+start = 0; step = 7
 
 for i, campo in enumerate(campi):
     print('--- ',campo,' ---')
