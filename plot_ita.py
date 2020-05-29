@@ -222,7 +222,7 @@ for n, name in enumerate(lista):
     yd[ yd>0 ] = log(2) / yd[ yd>0 ]
     yd[ yd<=0 ] = float('nan')
     ax[2].plot(x[1:],yd[1:],marker='o',linestyle='-.',label=name)
-    #ax[2].set_yscale('log')
+    ax[2].set_yscale('log')
     ax[2].set_ylabel('Doubling time [days]')
     #ax[2].set_xlabel('Giorni dal 24 Feb.')
 
@@ -420,7 +420,3 @@ plt.savefig('plot_ita_reg_status.png')
 
 
 # In[ ]:
-
-
-
-
